@@ -1,0 +1,127 @@
+page-profile {
+
+    .image {
+        align-content: center;
+       
+        padding-right: 20px;
+    }
+
+    .card {
+        box-shadow: 0 0 0;
+    }
+
+    // .navbar {
+    //     background:linear-gradient(to bottom, #3e4734, #3e4734);
+    // }
+
+    .top {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;;
+        height: 150px;
+        width: 100%;
+        background: linear-gradient(to bottom, #3e4734, #3e4734);
+        // box-shadow: 5px 5px 5px lightgrey;
+        // rgb(120, 186, 207)
+        color: white;
+    }
+
+    // .name {
+    //     text-align: center;
+    //     padding-top: 0;
+    //     padding-bottom: 0px;
+    //     text-align: center;
+    //     margin-top: 0;
+    //     font-size: 30px;
+    // }
+
+    // .image {
+    //     width: 150px;
+    //     height: 150px;
+    //     object-fit: contain;
+    //     align-content: center;
+    //     align-self: center;
+    //     color: black;
+    //     margin-top: 30px;
+    //     // border-radius: 50%;
+    //     // background-color: white;
+    //     position: relative;
+    //     margin-left: 120px;
+    //     padding-bottom: 0;
+    //     padding-top: 30px
+    // }
+
+    ion-icon {
+        font-size: 3em;
+        padding-top: 50px;
+        // size: 50px;
+        align-content: center;
+        align-self: center;
+        position: relative;
+        // border-radius: 50%;
+        // background-color: white;
+        
+    }
+
+    .logout {
+        padding-top: 60px;
+        position: relative;
+        bottom: 55px;
+        width: 95%;
+        right: 10px;
+        left: 10px;
+        
+    }
+
+    ion-icon {
+        font-size: 50px;
+        padding-left: 45%;
+        // padding-right: 50%;
+    }
+
+    .name {
+        font-size: 30px;
+        width: 100%;
+        // font-family: monospace;
+        color: white;
+        padding-top: 75px;
+        // padding-left: 25px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .info {
+        padding-top: 100px;
+        
+    }
+
+    .menu {
+        // align-self: left;
+        // align-content: left;
+        color: white;
+        position: left;
+        padding-top:0;
+        padding-bottom: 3px;
+        margin-top: 0;
+        margin-bottom: 2px;
+        // padding-left: 0;
+        // padding-right: 30px;
+    }
+
+    // .image {
+    //     // align-self: center;
+    //     padding-top: 50px;
+    //     padding-left: 40px;
+    // }
+
+    .element {
+        font-size: 100px;
+        padding-top: 50px;
+        padding-left: 40%;
+        // padding-right: 50%;
+    }
+
+
+}

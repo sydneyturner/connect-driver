@@ -1,0 +1,106 @@
+<style>
+  ion-content {
+    background-color: #3e4734;
+  }
+</style>
+
+<ion-header no-border>
+  <ion-navbar color="main">
+
+    <ion-title>Registration</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding no-border-top text-center>
+  <form [formGroup]="registration" (ngSubmit)="onSubmit()" class="form">
+    <ion-item>
+        <ion-label floating>First Name</ion-label>
+      <ion-input formControlName="firstname" type="text" placeholder="First Name"></ion-input>
+    </ion-item>
+    <p ion-text [hidden]="registration.controls.firstname.valid || submitted === false" color="danger" padding-left>
+      Please enter a first name
+    </p>
+    <ion-item>
+        <ion-label floating>Last Name</ion-label>
+      <ion-input formControlName="lastname" type="text" placeholder="Last Name"></ion-input>
+    </ion-item>
+    <p ion-text [hidden]="registration.controls.lastname.valid || submitted === false" color="danger" padding-left>
+      Please enter a last name
+    </p>
+    <ion-item>
+        <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+    </ion-item>
+    <p ion-text [hidden]="registration.controls.email.valid || submitted === false" color="danger" padding-left>
+      Please enter a valid email
+    </p>
+    <ion-item>
+        <ion-label floating>Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <p ion-text [hidden]="registration.controls.password.valid || submitted === false" color="danger" padding-left>
+      Please enter a password at least 8 characters long
+    </p>
+    <ion-item>
+        <ion-label floating>Confirm Password</ion-label>
+      <ion-input formControlName="passwordCheck" type="password" placeholder="Confirm Password"></ion-input>
+    </ion-item>
+    <p ion-text [hidden]="registration.controls.password.valid || submitted === false" color="danger" padding-left>
+      Please enter the same password
+    </p>
+    <!-- <ion-item>
+
+    </ion-item> -->
+
+
+  </form>
+<br>
+  <div class="cent" align="center">
+    <button ion-button align="center" type="submit" class="reg">Register</button>
+  </div>
+
+</ion-content>
+
+<!-- <ion-list>
+   
+    <ion-item-group>
+     
+      <ion-item>
+        <ion-label stacked>First Name</ion-label>
+        <ion-input type="text"  [(ngModel)]="firstname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Last Name</ion-label>
+        <ion-input type="text" [(ngModel)]="lastname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="email"  [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input type="password"  [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Confirm Password</ion-label>
+        <ion-input type="password"  [(ngModel)]="passwordCheck" type="Password"></ion-input>
+      </ion-item>
+      <br>
+      <ion-list radio-group>
+        <ion-item-group>
+          <ion-list-header class="radio" no-lines>
+            Role
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Rider</ion-label>
+            <ion-radio value="rider" checked></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Driver</ion-label>
+            <ion-radio value="driver"></ion-radio>
+          </ion-item>
+        </ion-item-group>
+      </ion-list>
+
+    </ion-item-group>
+  </ion-list> -->

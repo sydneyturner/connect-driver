@@ -1,0 +1,28 @@
+page-login {
+    ion-content {
+        background-color: #3e4734;
+    }
+
+    .login {
+        background-color: #fae71c;
+        color: black;
+        border: 10px;
+        align-self: center;
+        max-width: 100%;
+        width: 50%; 
+        height: 50px;
+        text-align: center;
+        font-size: 20px;
+        border-radius: 50px;
+        margin-left: 75px;
+    }
+
+    .item.item-label {
+        background-color: transparent;
+    }
+
+    .item.item-input {
+        background-color: transparent;
+        color: white;
+    }
+}

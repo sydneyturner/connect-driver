@@ -1,16 +1,29 @@
+<!-- <ion-nav [root]="rootPage"></ion-nav> -->
+
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+  <ion-header no-border>
+      <ion-toolbar color="main">
+          <ion-title>John</ion-title>
+      </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
+  <ion-content no-border-top>
+      <div class="menu-top">
+          <ion-icon name="md-person" class="element" align="center"></ion-icon>
+          <!-- <h5 class="name" align="center">Sydney</h5> -->
+          <h6 class="role" align="center">Driver</h6>
+      </div>
+      <div class="pages">
+          <ion-list>
+              <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+                  {{p.title}}
+              </button>
+              <button menuClose ion-item (click)="logout()" class="logout" no-lines>Logout</button>
+          </ion-list>
+      </div>
+
+
+
   </ion-content>
 
 </ion-menu>

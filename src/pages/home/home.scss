@@ -1,3 +1,46 @@
-page-home {
 
+page-home {
+   
+    .name {
+        font-size: 4em;
+        width: 100%;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: #fae71c;
+        // padding-top: 2em;
+        padding-left: 25px;
+        text-align: center;
+        margin: auto;
+    }
+    
+    .button {
+        background-color: #fae71c;
+        color: black;
+        border: 5px;
+        align-self: center;
+        max-width: 100%;
+        width: 100%; 
+        text-align: center;
+        font-size: 20px;
+        border-radius: 50px;
+    }
+    
+    #login {
+        margin-top: 100px;
+      }
+    
+    #reg {
+        margin-top: 20px;
+    }
+
+    .image {
+        // align-self: center;
+        padding-top: 50px;
+        padding-left: 40px;
+    }
+
+    .driver {
+        // margin-top: 50px;
+        color: #fae71c;
+        text-align: center;
+    }
 }

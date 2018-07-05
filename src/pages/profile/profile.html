@@ -1,0 +1,45 @@
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+
+<ion-header no-border>
+  <ion-navbar color="main" no-border>
+    <!-- <div align="center"><h1 class = "name"> Tiger's Milk </h1> </div>  -->
+   
+    <!-- <ion-buttons left start> -->
+    <button ion-button class="menu" start menuToggle>
+      <!-- menu toggle not working (unable to open menu)-->
+      <!-- class="menu"  -->
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!-- </ion-buttons> -->
+ <ion-title class="headerTitle">Profile</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="navigateToEditProfileModal()">Edit</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen parallax-header padding no-border-top>
+  <div class="top">
+    <ion-icon name="md-person" class="element"></ion-icon>
+
+  </div>
+
+  <div class="info">
+    <ion-list>
+      <ion-list-header>
+        <!-- in the future: put most recent places visited -->
+        Personal Information
+      </ion-list-header>
+      <ion-item>Firstname: {{this.driver.firstname}}</ion-item>
+      <ion-item>Lastname: {{this.driver.lastname}}</ion-item>
+      <ion-item>Email: {{this.driver.email}}</ion-item>
+      <ion-item>Role: Driver</ion-item>
+    </ion-list>
+  </div>
+
+
+  <div class="logout">
+
+  </div>
+</ion-content>
