@@ -18,6 +18,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpModule } from '@angular/http';
 
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +37,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    SocketIoModule.forRoot(config)
     // AgmCoreModule.forRoot({
     //   apiKey: 'AIzaSyAErGB_r9WhjbMMsmoxm_iz_-sH78GTqA8'
     // })
