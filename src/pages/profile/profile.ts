@@ -22,6 +22,7 @@ export class ProfilePage {
 
   private token: string;
   public driver: Driver;
+  public profile: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private http: Http, 
@@ -32,15 +33,16 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     
-    this.token = localStorage.getItem("TOKEN");
+    this.token = localStorage.getItem("Token");
     console.log("profile token", this.token)
 
     this.http.get("http://localhost:3000/driver?jwt=" + this.token)
       .subscribe(
         result => {
-          console.log(result);
-          this.driver = result.json().driver;
+          console.log(result.json());
+          this.profile = result.json().user;
           console.log(this.driver);
+          console.log(this.profile);
           
         },
         error => {

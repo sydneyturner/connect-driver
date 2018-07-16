@@ -21,7 +21,7 @@ export class AuthService {
 
           // store the token in local storage
           console.log(responseJson.token);
-          localStorage.setItem("TOKEN", responseJson.token);
+          localStorage.setItem("Token", responseJson.token);
           console.log(responseJson.token);
 
           callback();

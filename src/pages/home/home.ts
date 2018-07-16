@@ -12,7 +12,7 @@ export class HomePage {
 
   
   constructor(public navCtrl: NavController, private app: App) {
-       if (localStorage.getItem("TOKEN")) {
+       if (localStorage.getItem("Token")) {
       this.app.getRootNav().setRoot(ProfilePage);
     }
   }

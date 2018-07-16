@@ -2,25 +2,28 @@
 
 <ion-menu [content]="content">
   <ion-header no-border>
-      <ion-toolbar color="main">
-          <ion-title>John</ion-title>
-      </ion-toolbar>
+    <ion-navbar color="main">
+
+      <ion-title>{{this.profile ? this.profile.firstname : ""}}</ion-title>
+
+
+    </ion-navbar>
   </ion-header>
 
   <ion-content no-border-top>
-      <div class="menu-top">
-          <ion-icon name="md-person" class="element" align="center"></ion-icon>
-          <!-- <h5 class="name" align="center">Sydney</h5> -->
-          <h6 class="role" align="center">Driver</h6>
-      </div>
-      <div class="pages">
-          <ion-list>
-              <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-                  {{p.title}}
-              </button>
-              <button menuClose ion-item (click)="logout()" class="logout" no-lines>Logout</button>
-          </ion-list>
-      </div>
+    <div class="menu-top" align="center">
+      <!-- <ion-icon name="md-person" class="person" align="center"></ion-icon> 
+          <h5 class="name" align="center">Sydney</h5> 
+          <h6 class="role" align="center">Rider</h6> -->
+    </div>
+    <div class="pages">
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+        <button menuClose ion-item (click)="logout()" class="logout" no-lines>Logout</button>
+      </ion-list>
+    </div>
 
 
 

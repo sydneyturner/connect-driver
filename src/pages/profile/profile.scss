@@ -14,19 +14,7 @@ page-profile {
     //     background:linear-gradient(to bottom, #3e4734, #3e4734);
     // }
 
-    .top {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        margin: auto;;
-        height: 150px;
-        width: 100%;
-        background: linear-gradient(to bottom, #3e4734, #3e4734);
-        // box-shadow: 5px 5px 5px lightgrey;
-        // rgb(120, 186, 207)
-        color: white;
-    }
+
 
     // .name {
     //     text-align: center;
@@ -53,17 +41,17 @@ page-profile {
     //     padding-top: 30px
     // }
 
-    ion-icon {
-        font-size: 3em;
-        padding-top: 50px;
-        // size: 50px;
-        align-content: center;
-        align-self: center;
-        position: relative;
-        // border-radius: 50%;
-        // background-color: white;
+    // ion-icon {
+    //     font-size: 3em;
+    //     padding-top: 50px;
+    //     // size: 50px;
+    //     // align-content: center;
+    //     // align-self: center;
+    //     // position: relative;
+    //     // border-radius: 50%;
+    //     // background-color: white;
         
-    }
+    // }
 
     .logout {
         padding-top: 60px;
@@ -75,11 +63,6 @@ page-profile {
         
     }
 
-    ion-icon {
-        font-size: 50px;
-        padding-left: 45%;
-        // padding-right: 50%;
-    }
 
     .name {
         font-size: 30px;
@@ -116,10 +99,26 @@ page-profile {
     //     padding-left: 40px;
     // }
 
+    .top {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;;
+        height: 150px;
+        width: 100%;
+        background-color: #68c635;
+        // box-shadow: 5px 5px 5px lightgrey;
+        // rgb(120, 186, 207)
+        color: white;
+    }
+
     .element {
         font-size: 100px;
         padding-top: 50px;
-        padding-left: 40%;
+        align-content: center;
+        align-self: center;
+        // padding-left: 40%;
         // padding-right: 50%;
     }
 

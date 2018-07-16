@@ -21,25 +21,9 @@ export class MapPage {
   currentLong: any;
   marker: any;
 
-  stops = [
-    ['The Power and the Glory', -33.93009, 18.40808],
-    ['The Backpack Hostel', -33.92715, 18.41047],
-    ['Orphanage', -33.9258, 18.4132],
-    ['Arcade Cafe', -33.9240931, 18.4148569],
-    ['Hank Old Irish', -33.9216069, 18.4173553],
-    ['La Parada', -33.92146, 18.41815],
-    ['The Village Idiot', -33.91955, 18.42086],
-    ['Bus Stop #1', -33.92085139, 18.42090853],
-    ['Bus Stop #2', -33.9225382, 18.41906944],
-    ['Bus Stop #3', -33.92392681, 18.41752751],
-    ['Beerhouse', -33.92552, 18.41607],
-    ['Bus Stop #4', -33.92654112, 18.41466696],
-    ['Bus Stop #5', -33.92855058, 18.41214851],
-    ['Yours Truly', -33.9302, 18.4109]
-  ];
-
   constructor(public navCtrl: NavController, private plt: Platform, private geolocation: Geolocation, private storage: Storage,
     public http: Http, private socket: Socket) {
+    // private socket: Socket
   }
 
   ionViewDidLoad() {
@@ -58,27 +42,30 @@ export class MapPage {
         this.map.setCenter(latLng);
         this.map.setZoom(16);
 
-
         // set marker at current user's current position
-        this.currentLat = pos.coords.latitude;
-        this.currentLong = pos.coords.longitude;
+        // this.currentLat = pos.coords.latitude;
+        // this.currentLong = pos.coords.longitude;
 
-        let location = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        this.map.panTo(location);
+        // let location = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        // this.map.panTo(location);
+        // if (!this.marker) {
+        //   var image = " /assets/imgs/driver.png";
+        //   this.marker = new google.maps.Marker({
+        //     position: location,
+        //     map: this.map,
+        //     animation: google.maps.Animation.DROP,
+        //     icon: image,
+        //     //this.markerColor("#f4c842"),
+        //   });
+        // }
+        // else {
+        //   this.marker.setPosition(location);
+        // }
 
-        if (!this.marker) {
-          var image = " /assets/imgs/driver.png";
-          this.marker = new google.maps.Marker({
-            position: location,
-            map: this.map,
-            animation: google.maps.Animation.DROP,
-            icon: image,
-            //this.markerColor("#f4c842"),
-          });
-        }
-        else {
-          this.marker.setPosition(location);
-        }
+        this.map.addListener('click', function (event) {
+          this.placeMarker(event.latLng);
+        });
+
         // set stop locations and route
         this.setRedRoute();
         this.setLocations();
@@ -90,18 +77,29 @@ export class MapPage {
     });
   }
 
+  placeMarker(location) {
+    if (!this.marker) {
+      this.marker = new google.maps.Marker({
+        position: location,
+        map: this.map
+      });
+    }
+    else {
+      this.marker.setPosition(location);
+    }
+  }
 
-  // componentDidMount() {
-  //   this.geolocation.getCurrentPosition().then(pos => {
-  //     // let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-  //     this.socket.emit('sendLocation', {
-  //       driverLat: pos.coords.latitude,
-  //       driverLng: pos.coords.longitude
-  //     })
-  //     console.log("Location is shared");
-  //   })
-    
-  // }
+  shareLocation() {
+    this.geolocation.getCurrentPosition().then(pos => {
+      // let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+      this.socket.emit('sendLocation', {
+        driverLat: pos.coords.latitude,
+        driverLng: pos.coords.longitude
+      })
+      console.log("Location is shared");
+    })
+
+  }
 
   markerColor(color) {
     return {
@@ -116,19 +114,35 @@ export class MapPage {
 
   // set stops
   setLocations() {
-    for (var i = 0; i < this.stops.length; i++) {
-      var location = this.stops[i];
-      var position = new google.maps.LatLng(location[1], location[2]);
-      var marker = new google.maps.Marker({
-        map: this.map,
-        position: position,
-        icon: this.markerColor("#f12dff"),
-      })
-    }
+    this.http.get("http://localhost:3000/stops/town-route", {
+
+    })
+      .subscribe(
+        result => {
+          var stops = [];
+          stops = result.json();
+          for (var i = 0; i < stops.length; i++) {
+            // console.log(stops[i]);
+            var lat = stops[i].lat;
+            var lng = stops[i].lng;
+            var position = new google.maps.LatLng(lat, lng);
+            var marker = new google.maps.Marker({
+              map: this.map,
+              position: position,
+              icon: this.markerColor("#f12dff"),
+            })
+
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
+  // later: generalize to all routes
   setRedRoute() {
-    this.http.get("http://localhost:3000/town-route?jwt=" + localStorage.getItem("TOKEN"), {
+    this.http.get("http://localhost:3000/routes", {
 
     })
       .subscribe(
@@ -172,7 +186,6 @@ export class MapPage {
       this.marker.setPosition(location);
     }
   }
-
 
 
 

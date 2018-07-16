@@ -60,7 +60,7 @@ export class RegistrationPage {
         .subscribe(
           result => {
             console.log(result);
-
+            this.accountCreated();
             this.navCtrl.push(LoginPage, {
               password: this.registration.get('password').value,
               firstname: this.registration.get('firstname').value,
@@ -73,11 +73,32 @@ export class RegistrationPage {
           }
         );
     }
-    console.log('Passwords do not match');
+    else {
+      this.passwordsNotMatching();
+      console.log('Passwords do not match');
+    }
+    
+
+    // in the future: if user is already registered, send alert.
+
   }
 
-  // in the future: if user is already registered, send alert.
+  passwordsNotMatching() {
+    const alert = this.alertCtrl.create({
+      title: 'Passwords do not match',
+      subTitle: 'Please check your passwords and try again.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
-
+  accountCreated() {
+    const alert = this.alertCtrl.create({
+      title: 'Account created',
+      subTitle: 'Please login.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 }

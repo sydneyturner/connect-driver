@@ -1,48 +1,48 @@
 <style>
   ion-content {
-    background-color: #3e4734;
+    background-color: #68c635;
   }
 </style>
 
 <ion-header no-border>
   <ion-navbar color="main">
 
-    <ion-title>Registration</ion-title>
+    <ion-title align="center">Registration</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding no-border-top text-center>
   <form [formGroup]="registration" (ngSubmit)="onSubmit()" class="form">
     <ion-item>
-        <ion-label floating>First Name</ion-label>
+        <!-- <ion-label floating>First Name</ion-label> -->
       <ion-input formControlName="firstname" type="text" placeholder="First Name"></ion-input>
     </ion-item>
     <p ion-text [hidden]="registration.controls.firstname.valid || submitted === false" color="danger" padding-left>
       Please enter a first name
     </p>
     <ion-item>
-        <ion-label floating>Last Name</ion-label>
+        <!-- <ion-label floating>Last Name</ion-label> -->
       <ion-input formControlName="lastname" type="text" placeholder="Last Name"></ion-input>
     </ion-item>
     <p ion-text [hidden]="registration.controls.lastname.valid || submitted === false" color="danger" padding-left>
       Please enter a last name
     </p>
     <ion-item>
-        <ion-label floating>Email</ion-label>
+        <!-- <ion-label floating>Email</ion-label> -->
       <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
     </ion-item>
     <p ion-text [hidden]="registration.controls.email.valid || submitted === false" color="danger" padding-left>
       Please enter a valid email
     </p>
     <ion-item>
-        <ion-label floating>Password</ion-label>
+        <!-- <ion-label floating>Password</ion-label> -->
       <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
     </ion-item>
     <p ion-text [hidden]="registration.controls.password.valid || submitted === false" color="danger" padding-left>
       Please enter a password at least 8 characters long
     </p>
     <ion-item>
-        <ion-label floating>Confirm Password</ion-label>
+        <!-- <ion-label floating>Confirm Password</ion-label> -->
       <ion-input formControlName="passwordCheck" type="password" placeholder="Confirm Password"></ion-input>
     </ion-item>
     <p ion-text [hidden]="registration.controls.password.valid || submitted === false" color="danger" padding-left>
@@ -56,7 +56,7 @@
   </form>
 <br>
   <div class="cent" align="center">
-    <button ion-button align="center" type="submit" class="reg">Register</button>
+    <button ion-button align="center" type="submit" class="reg" (click)="onSubmit()">Register</button>
   </div>
 
 </ion-content>

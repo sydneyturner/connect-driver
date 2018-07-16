@@ -47,8 +47,7 @@ ion-title {
     margin: auto;;
     height: 100px;
     width: 100%;
-    background: linear-gradient(to bottom, #3e4734, #3e4734);
-    // background: linear-gradient(to bottom, black,black);
+    background-color: #68c635;
     box-shadow: 5px 5px 5px lightgrey;
     // rgb(120, 186, 207)
     color: white;
@@ -61,10 +60,4 @@ ion-title {
 .logout {
     padding-top: 50px;
     color: red;
-}
-
-.element {
-    font-size: 50px;
-    padding-left: 45%;
-    // padding-right: 50%;
 }

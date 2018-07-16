@@ -12,7 +12,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <!-- </ion-buttons> -->
- <ion-title class="headerTitle">Profile</ion-title>
+ <ion-title class="headerTitle" align="center">Profile</ion-title>
     <ion-buttons right>
       <button ion-button (click)="navigateToEditProfileModal()">Edit</button>
     </ion-buttons>
@@ -20,8 +20,8 @@
 </ion-header>
 
 <ion-content fullscreen parallax-header padding no-border-top>
-  <div class="top">
-    <ion-icon name="md-person" class="element"></ion-icon>
+  <div class="top" align="center">
+    <ion-icon name="md-person" class="element" align="center"></ion-icon>
 
   </div>
 
@@ -31,10 +31,12 @@
         <!-- in the future: put most recent places visited -->
         Personal Information
       </ion-list-header>
-      <ion-item>Firstname: {{this.driver.firstname}}</ion-item>
-      <ion-item>Lastname: {{this.driver.lastname}}</ion-item>
-      <ion-item>Email: {{this.driver.email}}</ion-item>
-      <ion-item>Role: Driver</ion-item>
+          <!-- <code>{{this.profile}}</code> -->
+          <ion-item>Firstname: {{this.profile ? this.profile.firstname : ""}}</ion-item>
+          <ion-item>Lastname: {{this.profile ? this.profile.lastname : ""}}</ion-item>
+          <ion-item>Email: {{this.profile ? this.profile.email : ""}}</ion-item>
+          <ion-item>Role: Driver</ion-item>
+      
     </ion-list>
   </div>
 
