@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 import { Socket } from 'ng-socket-io';
 import { Observable } from 'rxjs/Observable';
+import { markDirty } from '@angular/core/src/render3';
 
 declare var google;
 @IonicPage()
@@ -20,10 +21,15 @@ export class MapPage {
   currentLat: any;
   currentLong: any;
   marker: any;
+  route: any;
+  // oldMarker: any;
+  markerLatLng: any;
 
   constructor(public navCtrl: NavController, private plt: Platform, private geolocation: Geolocation, private storage: Storage,
     public http: Http, private socket: Socket) {
     // private socket: Socket
+
+    
   }
 
   ionViewDidLoad() {
@@ -37,67 +43,86 @@ export class MapPage {
       }
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-      this.geolocation.getCurrentPosition().then(pos => {
-        let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        this.map.setCenter(latLng);
-        this.map.setZoom(16);
+      // this.geolocation.getCurrentPosition().then(pos => {
+      //   let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+      //   this.map.setCenter(latLng);
+      //   this.map.setZoom(16);
 
-        // set marker at current user's current position
-        // this.currentLat = pos.coords.latitude;
-        // this.currentLong = pos.coords.longitude;
+      // set marker at current user's current position
+      // this.currentLat = pos.coords.latitude;
+      // this.currentLong = pos.coords.longitude;
 
-        // let location = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        // this.map.panTo(location);
-        // if (!this.marker) {
-        //   var image = " /assets/imgs/driver.png";
-        //   this.marker = new google.maps.Marker({
-        //     position: location,
-        //     map: this.map,
-        //     animation: google.maps.Animation.DROP,
-        //     icon: image,
-        //     //this.markerColor("#f4c842"),
-        //   });
-        // }
-        // else {
-        //   this.marker.setPosition(location);
-        // }
+      // let location = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 
-        this.map.addListener('click', function (event) {
-          this.placeMarker(event.latLng);
-        });
+      let location = new google.maps.LatLng(-33.9288, 18.4108);
 
-        // set stop locations and route
-        this.setRedRoute();
-        this.setLocations();
-        // this.componentDidMount();
-      }).catch((error) => {
-        console.log('Error getting location', error);
+      this.map.panTo(location);
+      // if (!this.marker) {
+      //   var image = " /assets/imgs/driver.png";
+      //   this.marker = new google.maps.Marker({
+      //     position: location,
+      //     map: this.map,
+      //     animation: google.maps.Animation.DROP,
+      //     icon: image,
+      //     //this.markerColor("#f4c842"),
+      //   });
+      // }
+      // else {
+      //   this.marker.setPosition(location);
+      // }
+      var image = " /assets/imgs/driver.png";
+      
+      this.marker = new google.maps.Marker({
+        position: location,
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+        icon: image,
+        draggable: true,
+        //this.markerColor("#f4c842"),
       });
+
+
+      // this.updatedMarker(this.marker);
+
+      // google.maps.event.addListener(
+      //   this.marker, 'drag', function() {
+      //     document.getElementById('lat1').innerHTML = this.marker.position.lat().toFixed(20);
+      //     document.getElementById('lng1').innerHTML = this.marker.position.lng().toFixed(20);
+      //     // document.getElementById('zoom').innerHTML = map
+      //   }
+      // )
+
+      // console.log(this.marker.position.lat());
+      // console.log(this.marker.position.lng());
+
+      // set stop locations and route
+      this.setRedRoute();
+      this.setLocations();
+      // this.componentDidMount();
+      // }).catch((error) => {
+      //   console.log('Error getting location', error);
+      // });
 
     });
   }
 
-  placeMarker(location) {
-    if (!this.marker) {
-      this.marker = new google.maps.Marker({
-        position: location,
-        map: this.map
-      });
-    }
-    else {
-      this.marker.setPosition(location);
-    }
-  }
+
 
   shareLocation() {
-    this.geolocation.getCurrentPosition().then(pos => {
+      this.currentLat = this.marker.position.lat();
+      this.currentLong = this.marker.position.lng();
+      console.log(this.currentLat);
+      console.log(this.currentLong);
+
+    // this.geolocation.getCurrentPosition().then(pos => {
       // let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
       this.socket.emit('sendLocation', {
-        driverLat: pos.coords.latitude,
-        driverLng: pos.coords.longitude
+        driverLat: this.currentLat,
+        driverLng: this.currentLong
+        // string: 'Hello this is Sydney'
       })
       console.log("Location is shared");
-    })
+    
 
   }
 
@@ -147,18 +172,29 @@ export class MapPage {
     })
       .subscribe(
         result => {
+          var routes = [];
+          routes = result.json();
           var locationCoords = [];
-          locationCoords = result.json();
-
-          var route = new google.maps.Polyline({
+          // var route: any;
+          for (var i = 0; i < routes.length; i++) {
+            var lat = routes[i].lat;
+            var lng = routes[i].lng;
+            let latLng = new google.maps.LatLng(lat, lng);
+            locationCoords.push(latLng)
+            // console.log(locationCoords[i]);
+          }
+          // for(var i = 0; i < routes.length; i++) {
+          //   console.log(routes[i]);
+          // }
+          this.route = new google.maps.Polyline({
             path: locationCoords,
             geodesic: true,
-            strokeColor: '#700d77',
+            strokeColor: '#1784c4',
             strokeOpacity: 1.0,
             strokeWeight: 10
           });
 
-          route.setMap(this.map);
+          this.route.setMap(this.map);
         },
 
         error => {
