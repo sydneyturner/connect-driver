@@ -1,0 +1,8 @@
+   
+    {
+        "name": "ConneCT",
+        "description": "Driver App",
+        "repository": "https://github.com/sydneyturner/connect-mobile",
+        "logo": "",
+        "keywords": ["connect", "heroku", "ConneCT"]
+    }
